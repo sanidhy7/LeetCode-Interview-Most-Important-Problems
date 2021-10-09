@@ -1,17 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
 
-const getMaxProfit = (prices) => {
-  let maxProfit = 0;
 
-  for (let buyDay = 0; buyDay < prices.length; buyDay++) {
-    const buyPrice = prices[buyDay];
+class Solution {
+public:
+    //vextor<int>prices;
+    int maxProfit(vector<int>& prices) {
 
-    for (let sellDay = buyDay + 1; sellDay < prices.length; sellDay++) {
-      const sellPrice = prices[sellDay];
-      const currentProfit = sellPrice - buyPrice;
+        int profit=0;
+        int minvalue=INT_MAX;
 
-      maxProfit = Math.max(maxProfit, currentProfit);
+        for(int i=0;i<prices.size();i++)
+        {
+            minvalue=min(minvalue,prices[i]);
+            profit=max(profit,prices[i]-minvalue);
+        }
+
+        return profit;
+
     }
-  }
 
-  return maxProfit;
 };
+int main() {
+        int n,i,j,ans;
+        cout<<"No of elements";
+        cin>>n;
+        vector<int>prices;
+        cout<<"Enter numbers";
+        for(i=0;i<n;i++)
+        {
+            cin>>j;
+            prices.push_back(j);
+        }
+        Solution obj1;
+        ans=obj1.maxProfit(prices);
+        //ans=maxProfit(prices);
+        cout<<ans;
+
+        return 0;
+}
